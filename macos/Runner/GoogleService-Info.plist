@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCIrgnk6csPTn40-sP-lkyj9MQwyLxbmPE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>189486171528</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.arborizacao.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>arborizacao-certare</string>
+	<key>STORAGE_BUCKET</key>
+	<string>arborizacao-certare.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:189486171528:ios:d0e308fb39005ea888263d</string>
+</dict>
+</plist>
