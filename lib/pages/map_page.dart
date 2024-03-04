@@ -134,7 +134,7 @@ class _MapScreenState extends State<MapScreen> {
     }
   }
 
-  Future<void> _loadPointsFromFirestore() async { 
+  Future<void> _loadPointsFromFirestore() async {
     try {
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('pontos').get();
@@ -707,6 +707,32 @@ class _MapScreenState extends State<MapScreen> {
       return;
     }
 
+    if (selectedCategory == 'Selecione') {
+      // Exibir um aviso para o usuário
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Categoria não selecionada',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            content: const Text(
+              'Por favor, selecione uma categoria para o ponto.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Fechar'),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
     Position? position = await Geolocator.getLastKnownPosition();
 
     if (position != null) {
@@ -874,7 +900,7 @@ class _MapScreenState extends State<MapScreen> {
     }
   }
 
-  void _onMarkerTap(PointInfo pointInfo) {
+  void _onMarkerTap(PointInfo pointInfo) async {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -882,7 +908,15 @@ class _MapScreenState extends State<MapScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          title: const Text('Informações do Ponto'),
+          backgroundColor: Colors.white,
+          elevation: 25,
+          title: const Text(
+            'Detalhes do Ponto',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -915,10 +949,31 @@ class _MapScreenState extends State<MapScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text('Fechar'),
+              child: const Text(
+                'Fechar',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      PointDetailsScreen(pointInfo: pointInfo),
+                ));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromRGBO(6, 31, 73, 1),
+              ),
+              child: const Text(
+                'Editar Dados',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
             ),
           ],
-          elevation: 25,
         );
       },
     );
